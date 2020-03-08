@@ -7,19 +7,19 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="../favicon.ico">
+		<link rel="icon" href="./favicon.ico">
 		<title>Association I.D.E. - Informatique et droit des étrangers</title>
 		<!-- Bootstrap core CSS -->
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
-		<link rel="../stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<link rel="./stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<!-- Custom styles for this template -->
-		<link href="../css/owl.carousel.css" rel="stylesheet">
-		<link href="../css/owl.theme.default.min.css"  rel="stylesheet">
-		<link href="../css/style.css" rel="stylesheet">
+		<link href="./css/owl.carousel.css" rel="stylesheet">
+		<link href="./css/owl.theme.default.min.css"  rel="stylesheet">
+		<link href="./css/style.css" rel="stylesheet">
 		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-		<script src="../js/ie-emulation-modes-warning.js"></script>
+		<!--[if lt IE 9]><script src="././assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="./js/ie-emulation-modes-warning.js"></script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -37,7 +37,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="../index.html#page-top">
+					<a class="navbar-brand page-scroll" href="./index.html#page-top">
 					<span style="color:#e87613;font-family:'Open Sans',sans-serif;">
 					<b>Association IDE</b>
 					</span>
@@ -50,16 +50,16 @@
 							<a href="#page-top"></a>
 						</li>
 						<li>
-							<a class="page-scroll" href="../index.html#asso">L'association I.D.E.</a>
+							<a class="page-scroll" href="./index.html#asso">L'association I.D.E.</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="../index.html#lodetis">L'outil Lodétis</a>
+							<a class="page-scroll" href="./index.html#lodetis">L'outil Lodétis</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="../index.html#liens">Liens utiles</a>
+							<a class="page-scroll" href="./index.html#liens">Liens utiles</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="../index.html#contact">Contact</a>
+							<a class="page-scroll" href="./index.html#contact">Contact</a>
 						</li>
 					</ul>
 				</div>
@@ -69,7 +69,7 @@
 		</nav>
 		<!-- Header -->
 		<?php
-		include("../connect.php");
+		include("./connect.php");
 		
 		$lang = "fr";
 		if(isset($_GET["lang"])){
@@ -84,9 +84,11 @@
 		    }
 		}
 		
-		$id = "QUESTION-PRELMINAIRE1";
+		$id = "MIL-0";
 		if(isset($_GET["id"])){
-		    $id = $_GET["id"];
+    		if(substr($_GET["id"],0,3)=="REP" || substr($_GET["id"],0,3)=="MIL" || substr($_GET["id"],0,3)=="DOC"){
+		        $id = $_GET["id"];
+		    }
 		}
 		
     $sql = "SELECT * FROM `lodetis_ts` WHERE `id` LIKE :id;";
@@ -125,10 +127,30 @@
 					<div class="col-lg-12 text-center">
 						<div class="section-title">
 						  <br/><br/>
-							<h2><a href="index.php">LODÉTIS</a></h2><br/><br/>
+							<h2><a href="lodetis-demo.php">LODÉTIS-DÉMO</a></h2><br/><br/>
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<div class="col-md-2 text-center">
+					</div>
+					<div class="col-md-8 text-center">
+						<div class="mz-module-about bloc-texte">
+					    <p><b><i>Cette démonstration montre l'arbre des questions uniquement dans le cas où c'est le statut de militaire qui permet l'obtention du titre de séjour.</i></b>
+					    </p>
+					  </div>
+					</div>
+					<div class="col-md-2 text-center">
+					</div>
+        </div>
+
+				<div class="row">
+					<div class="col-md-12 text-center">
+					&nbsp;
+					</div>
+        </div>
+
 				<div class="row">
 					<!-- question -->
 					<div class="col-md-2 text-center">
@@ -174,7 +196,7 @@
 				<div class="row">
 					<div class="col-md-2 text-center">
 					</div>
-					<a href="index.php?id=<?php echo $id_oui."&amp;lang=".$lang;?>">
+					<a href="lodetis-demo.php?id=<?php echo $id_oui."&amp;lang=".$lang;?>">
 					<div class="col-md-3 text-center">
 						<div class="mz-module-about bloc-texte">
 							<p>
@@ -192,7 +214,7 @@
 					</a>
 					<div class="col-md-2 text-center">
 					</div>
-					<a href="index.php?id=<?php echo $id_non."&amp;lang=".$lang;?>">
+					<a href="lodetis-demo.php?id=<?php echo $id_non."&amp;lang=".$lang;?>">
 					<div class="col-md-3 text-center">
 						<div class="mz-module-about bloc-texte">
 							<p>
@@ -212,32 +234,30 @@
 					</div>					
 				</div>
 				<?php if($reponse==1){echo "-->";} ?>
+				<!--
 				<div class="row">
-					<!-- about module -->
 					<div class="col-md-12 text-center">
 					&nbsp;
 					</div>
         </div>
 				<div class="row">
-					<!-- about module -->
-				
 					<div class="col-md-2 text-center">
 					</div>
 					<div class="col-md-8 text-center">
 						<div class="mz-module-about bloc-texte">
 					    <p>Changer de langue ?</p>
 					    <p>
-					    <a href="index.php?id=<?php echo $id."&amp;lang=en";?>">anglais</a> / 
-					    <a href="index.php?id=<?php echo $id."&amp;lang=ar";?>">arabe</a> / 
-					    <a href="index.php?id=<?php echo $id."&amp;lang=es";?>">espagnol</a> / 
-					    <a href="index.php?id=<?php echo $id;?>">français</a>
+					    <a href="lodetis-demo.php?id=<?php echo $id."&amp;lang=en";?>">anglais</a> / 
+					    <a href="lodetis-demo.php?id=<?php echo $id."&amp;lang=ar";?>">arabe</a> / 
+					    <a href="lodetis-demo.php?id=<?php echo $id."&amp;lang=es";?>">espagnol</a> / 
+					    <a href="lodetis-demo.php?id=<?php echo $id;?>">français</a>
 					    </p>
 					  </div>
 					</div>
 					<div class="col-md-2 text-center">
 					</div>
         </div>
-
+        -->
 			</div>
 			<!-- /.container -->
 		</section>
@@ -258,12 +278,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script src="../js/owl.carousel.min.js"></script>
-		<script src="../js/cbpAnimatedHeader.js"></script>
-		<script src="../js/theme-scripts.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/owl.carousel.min.js"></script>
+		<script src="./js/cbpAnimatedHeader.js"></script>
+		<script src="./js/theme-scripts.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="../js/ie10-viewport-bug-workaround.js"></script>
+		<script src="./js/ie10-viewport-bug-workaround.js"></script>
 
 	</body>
 </html>
